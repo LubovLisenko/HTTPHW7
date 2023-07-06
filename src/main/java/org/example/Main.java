@@ -1,0 +1,13 @@
+package org.example;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+public class Main {
+    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
+        //new HttpStatusChecker().getStatusImage(103);
+        new HttpStatusImageDownloader().downloadStatusImage(103);
+
+
+    }
+}
