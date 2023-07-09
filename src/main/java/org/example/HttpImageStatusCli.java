@@ -9,14 +9,20 @@ public class HttpImageStatusCli {
     HttpStatusImageDownloader downloader = new HttpStatusImageDownloader();
 
     void askStatus() throws URISyntaxException, IOException {
-        System.out.println("Enter HTTP status code");
+        System.out.println("Enter HTTP status code: ");
         Scanner scanner = new Scanner(System.in);
-        int number = scanner.nextInt();
+        String number = scanner.nextLine();
+        try {
+            int numberDbl = Integer.parseInt(number);
+            String image = httpStatusChecker.getStatusImage(numberDbl);
+            if (image != null) {
+                downloader.downloadStatusImage(numberDbl);
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Please enter valid number");
+        }
         scanner.close();
-        String image = httpStatusChecker.getStatusImage(number);
-        if (image != null) {
-            downloader.downloadStatusImage(number);
-        } else System.out.println(("Enter valid number"));
     }
 }
+
 
